@@ -1,6 +1,6 @@
 {
   "name": "atelier-marketplace",
-  "owner": { "name": "Atelier contributors" },
+  "owner": { "name": "Piyush Sharma (ScienHAC)", "url": "https://github.com/ScienHAC" },
   "plugins": [
     {
       "name": "atelier",

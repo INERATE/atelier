@@ -38,7 +38,7 @@ three:
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add <owner>/atelier      # this GitHub repo
+/plugin marketplace add ScienHAC/atelier
 /plugin install atelier
 ```
 
@@ -113,6 +113,11 @@ New skills, component-registry MCPs, stack guides, and deployment recipes are
 the main contribution surfaces. Read [CONTRIBUTING.md](CONTRIBUTING.md) — every
 contribution passes the same gates Atelier enforces on generated code.
 
+## Maintainer
+
+Created and maintained by **[Piyush Sharma (@ScienHAC)](https://github.com/ScienHAC)** —
+built from the hard-won production patterns of [GrowthCharters](https://growthcharters.com).
+
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © Piyush Sharma (ScienHAC) and Atelier contributors
