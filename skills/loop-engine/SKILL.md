@@ -5,6 +5,10 @@ description: The Atelier operating loop — understand → clarify → plan → 
 
 # Loop Engine
 
+**Step 0 — before anything: adopt the principal-mind skill.** It sets how you
+decide (no hedging), debug (root cause), secure (reflexes), and speak
+(outcome-first). Every phase below runs inside that mindset, on every model tier.
+
 Every task is recursion with a base case: `if (done) return;`. You may not claim
 "done" while any done-criterion is unmet.
 

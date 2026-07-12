@@ -18,7 +18,13 @@ INSERT INTO rules (domain,key,value,source) VALUES
  ('stack','llm_payloads','TOON over JSON for LLM-bound payloads; gRPC backend-to-backend','core'),
  ('stack','video_gen','ladder: GOOGLE_API_KEY (gemini-omni-flash-preview/Veo3.1) -> Vertex creds -> paste-prompt to Gemini app -> user mp4; never exit on missing token','core'),
  ('stack','credentials','project .env (gitignored), standard var names GOOGLE_API_KEY | GOOGLE_APPLICATION_CREDENTIALS+GOOGLE_CLOUD_PROJECT+GOOGLE_CLOUD_LOCATION; never in db or commits','core'),
- ('stack','assets','every raster -> webp via assets.py before serving; video -> frames -> webp for scrollytelling','core');
+ ('stack','assets','every raster -> webp via assets.py before serving; video -> frames -> webp for scrollytelling','core'),
+ ('security','inputs','validate every external input at trust boundaries; parameterized queries only','core'),
+ ('security','authz','ownership check on every endpoint; IDs from token never request body','core'),
+ ('security','secrets','env/secret-manager only; never in code, logs, errors, or client bundle','core'),
+ ('security','abuse_check','before shipping user-facing surface ask: how would I abuse this? rate-limit + Turnstile on public forms','core'),
+ ('code','decisiveness','when asked to choose, choose ONE with a reason; hedge only on irreversible/safety calls','core'),
+ ('code','debugging','reproduce first; read the actual error; root cause via graph callers; fix in shared path; leave a regression check; never claim fixed without running','core');
 
 DELETE FROM registry WHERE kind IN ('component','skill','mcp');
 INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
@@ -46,7 +52,8 @@ INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
 
 DELETE FROM framework_map;
 INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
- ('skills/loop-engine/SKILL.md','skill','the operating loop, model routing table, clarification protocol, termination rule','any nontrivial task; deciding which model tier; when to stop or ask','architect,builder,summarizer'),
+ ('skills/principal-mind/SKILL.md','skill','the thinking protocol: decisive answers, root-cause debugging, security reflexes, outcome-first reporting','FIRST, on every prompt — step 0 before all other skills; any bug/debug/security/decision task','loop-engine'),
+ ('skills/loop-engine/SKILL.md','skill','the operating loop, model routing table, clarification protocol, termination rule','any nontrivial task; deciding which model tier; when to stop or ask','architect,builder,summarizer,principal-mind'),
  ('skills/design-law/SKILL.md','skill','premium UI law: vocabulary, tokens, motion, icons, component canon, anti-slop, checklist','any UI/design/landing/component/animation work','gateway,asset-pipeline,registry'),
  ('skills/clean-code-law/SKILL.md','skill','250-word file budget, DRY via graph, comment policy, split strategies','writing or refactoring any source code','file_size_gate'),
  ('skills/structure-law/SKILL.md','skill','canonical file trees per stack + intake questions','scaffolding, moving files, new projects','nextjs,fastapi'),
