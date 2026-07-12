@@ -62,6 +62,7 @@ INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
  ('skills/deploy-advisor/SKILL.md','skill','hosting matrix with real costs; decision rules','choosing hosting, estimating costs, CI/CD setup',''),
  ('skills/gateway/SKILL.md','skill','resolves authoritative design files (core + overlays)','START of any UI task, before design-law','design-law,learner'),
  ('skills/asset-pipeline/SKILL.md','skill','webp/frames tools, scrollytelling recipe, video/logo generation credential ladder + universal prompts','images, video, logo/brand-mark generation, media, storytelling sections','assets.py,ScrollScrub,design-law'),
+ ('skills/living-graphics/SKILL.md','skill','continuous component animations: SVG flow schematics, traveling packets, pulsing nodes, state-reactive micro-experiences, Rive/Lottie option','animated cards, data-flow diagrams, dynamic infographics, ambient/continuous/loop animation, micro-interactions','design-law,asset-pipeline'),
  ('skills/stack-guides/nextjs.md','skill','Next.js decision rules + 5 agent mistakes','frontend work in Next.js','structure-law,design-law'),
  ('skills/stack-guides/fastapi.md','skill','FastAPI decision rules + 5 agent mistakes','Python backend/AI service work','structure-law'),
  ('skills/stack-guides/comms.md','skill','REST vs GraphQL vs gRPC vs SSE/WS vs TOON decision table','choosing protocols, streaming, real-time, API design','fastapi,redis-celery'),
