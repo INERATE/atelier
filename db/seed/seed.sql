@@ -27,8 +27,10 @@ INSERT INTO rules (domain,key,value,source) VALUES
  ('code','decisiveness','when asked to choose, choose ONE with a reason; hedge only on irreversible/safety calls','core'),
  ('code','debugging','reproduce first; read the actual error; root cause via graph callers; fix in shared path; leave a regression check; never claim fixed without running','core');
 
-DELETE FROM registry WHERE kind IN ('component','skill','mcp');
-INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
+-- heal any pre-0.2.2 duplicates, then make them impossible: core rows upsert by (kind,name)
+DELETE FROM registry WHERE id NOT IN (SELECT MIN(id) FROM registry GROUP BY kind,name);
+CREATE UNIQUE INDEX IF NOT EXISTS registry_kind_name ON registry(kind,name);
+INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
  ('component','shadcn/ui','https://ui.shadcn.com','shadcn MCP / npx shadcn add','Radix primitives; restyle to tokens','a11y,ssr,dark'),
  ('component','Aceternity UI','https://ui.aceternity.com','aceternityui MCP','premium animated sections; strip to one accent','animated,dark'),
  ('component','ReactBits','https://reactbits.dev','react-bits MCP','micro-interaction components','animated'),
