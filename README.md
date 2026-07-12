@@ -23,10 +23,12 @@ three:
   page edits), a component registry the agent picks from. The "AI-slop template
   look" is named and banned.
 - **Clean-code law** — 250 words per file, enforced by a hook, not a hope.
-- **Automatic model routing** — Opus plans, Sonnet builds, Haiku summarizes.
-  You never switch models manually.
-- **Token-cheap memory** — rules, plans, and registries live in SQLite rows
-  served as lean pipe-rows, not re-read markdown.
+- **Automatic model routing** — Opus plans, Sonnet builds, Haiku summarizes,
+  a parallel design-scout studies premium component source while you build,
+  and a learner ingests your references. You never switch models manually.
+- **Token-cheap memory + framework graph** — rules, plans, and registries live
+  in SQLite rows served as lean pipe-rows, and `store.py map <topic>` resolves
+  which skill/tool to load in one ~30-token query instead of directory scans.
 - **Battle-tested auth law** — rotating refresh tokens, families, grace windows,
   silent refresh, and the exact anti-patterns that corrupt auth.
 - **Native asset pipeline** — image→webp, video→webp frames→scroll-scrubbed
@@ -103,9 +105,12 @@ your taste, and your taste can't corrupt the core.
 
 ## Status
 
-Phases 0–4 landed: laws, agents, commands, hooks, store, asset pipeline,
-self-learning. Phase 5 (mcp-maker, /update migrations, more stack guides) is
-next — see the [implementation plan](docs/IMPLEMENTATION-PLAN.md).
+Phases 0–4 landed: 8 law/stack skills, 5 model-pinned agents (architect,
+builder, summarizer, learner, design-scout), 10 commands, enforcement hooks,
+the SQLite store with a 21-node framework map, the asset pipeline, and
+self-learning overlays. Phase 5 (mcp-maker, /update migrations, more stack
+guides, media daemon) is next — see the
+[implementation plan](docs/IMPLEMENTATION-PLAN.md).
 
 ## Contributing
 
