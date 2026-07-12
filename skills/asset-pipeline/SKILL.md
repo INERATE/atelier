@@ -52,3 +52,31 @@ Tell the user: paste into the Gemini app, download the mp4, drop it in
 `workspace/references/video/`, then run `/atelier:build` to continue — the
 pipeline handles frames automatically. If Gemini refuses, simplify the Subject
 line (concrete object, neutral scene) and retry once.
+
+## Logo & brand-mark generation (same ladder, image models)
+
+When a project needs a logo/mark: rung 1–2 call the Gemini **image** models
+with the same credentials (`gemini-2.5-flash-image` / Imagen via
+`GOOGLE_API_KEY`, or Vertex Imagen with service-account creds); rung 3 emit
+the universal prompt below for ANY platform (Gemini app, ChatGPT/DALL·E,
+Midjourney). Always generate light + dark variants, convert to webp, and
+check crispness at 16px. The mark must obey design-law: flat vector look,
+hairline geometry, near-monochrome + the project's ONE accent — never
+gradients, 3D, or mascots.
+
+**Universal logo prompt (fill the brackets, works on every platform):**
+
+> Minimal geometric logo mark for "<NAME>", a premium <what it does> company.
+> Concept: <one visual idea tied to what the company means — e.g. "a loop
+> whose final segment resolves into a filled square: iteration reaching
+> done">. Style: Swiss / International Typographic Style, flat vector, thin
+> hairline strokes of consistent 1.5px optical weight like an architectural
+> schematic, generous negative space; no gradients, no 3D, no shadows, no
+> mascots, no extra glyphs. Colors: ink-black strokes on off-white #FAFAF8
+> with exactly ONE small filled element in <ACCENT HEX>. Must stay crisp at
+> 16px favicon size. Second variant: dark mode — off-white #F5F5F3 strokes on
+> near-black #0A0A0B, same accent element. Optional lockup: wordmark
+> "<NAME>" in a grotesk sans, weight 500–600, all caps, +6–8% letter-spacing.
+
+If the output has clutter, append: "absolutely no background texture, no
+reflections — mark and wordmark only," and retry once.
