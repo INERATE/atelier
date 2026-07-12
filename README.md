@@ -105,12 +105,12 @@ your taste, and your taste can't corrupt the core.
 
 ## Status
 
-Phases 0–4 landed: 8 law/stack skills, 5 model-pinned agents (architect,
-builder, summarizer, learner, design-scout), 10 commands, enforcement hooks,
-the SQLite store with a 21-node framework map, the asset pipeline, and
-self-learning overlays. Phase 5 (mcp-maker, /update migrations, more stack
-guides, media daemon) is next — see the
-[implementation plan](docs/IMPLEMENTATION-PLAN.md).
+Phases 0–5 landed: 13 skills (laws + principal-mind + mcp-maker + 5 stack
+guides), 5 model-pinned agents (architect, builder, summarizer, learner,
+design-scout), 11 commands, enforcement hooks, CI, the SQLite store with a
+27-node framework map, the asset pipeline, and self-learning overlays.
+Open items: the media-generation daemon (gRPC) and broader cross-runtime
+adapters — see the [implementation plan](docs/IMPLEMENTATION-PLAN.md).
 
 ## Contributing
 

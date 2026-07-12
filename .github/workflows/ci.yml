@@ -1,0 +1,43 @@
+name: ci
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Hook self-checks
+        run: |
+          python hooks/file_size_gate.py --test
+          python hooks/session_start.py --test
+
+      - name: Store init + queries (schema & seed valid)
+        run: |
+          python db/store.py init
+          python db/store.py rules design | grep -q theming
+          python db/store.py map bug | grep -q principal-mind
+          python db/store.py registry component | grep -q shadcn
+
+      - name: Manifests are valid JSON
+        run: |
+          python -c "import json; json.load(open('.claude-plugin/plugin.json')); json.load(open('.claude-plugin/marketplace.json')); json.load(open('hooks/hooks.json'))"
+
+      - name: Own law — code files within word budget
+        run: |
+          python - <<'EOF'
+          import os, sys
+          bad = []
+          for root, _, files in os.walk('.'):
+              if any(p in root for p in ('.git', 'node_modules')): continue
+              for f in files:
+                  if os.path.splitext(f)[1] in ('.py', '.tsx', '.ts', '.js'):
+                      p = os.path.join(root, f)
+                      w = len(open(p, encoding='utf-8', errors='ignore').read().split())
+                      if w > 350: bad.append(f"{p}: {w}")
+          if bad: sys.exit("over hard cap: " + ", ".join(bad))
+          EOF
