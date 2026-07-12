@@ -1,6 +1,6 @@
 <div align="center">
 
-# Atelier
+<img src="https://raw.githubusercontent.com/INERATE/atelier/main/docs/assets/atelier.png" alt="Atelier" width="300" />
 
 **The craftsman's framework for AI-built software.**
 
