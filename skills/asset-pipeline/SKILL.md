@@ -12,7 +12,17 @@ description: Atelier's native asset tools — image→webp compression, video→
 - `python <plugin>/mcp/assets/assets.py frames <video> [fps]` — mp4 → webp
   frame sequence (needs ffmpeg; missing → tell the user the one-line install,
   continue with other work).
-- Both record `asset_manifest` rows. Serve only webp to browsers.
+- `python <plugin>/mcp/assets/assets.py cut <image> [tol=32]` — flat background →
+  transparent webp (samples the corner color; raise tol for gradients/noise).
+- All record `asset_manifest` rows. Serve only webp to browsers.
+
+## Transparency & icons (no model can do this — we do)
+
+NO image model (Gemini, Imagen, DALL·E) outputs a real alpha channel. The
+recipe: generate the mark on a FLAT background (the logo prompt below already
+forces this), then `assets.py cut` strips it locally — free, offline, zero
+credentials. Photos / complex subjects: `pip install rembg`, then
+`rembg i in.png out.png` (local U2Net model, also key-free).
 
 ## Scrollytelling recipe (the storytelling primitive)
 
