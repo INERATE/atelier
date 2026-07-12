@@ -4,6 +4,7 @@
   store.py init [workspace_dir]      create db + schema + seed
   store.py rules <domain>            active rules for a domain
   store.py registry <kind>           registry rows of a kind
+  store.py map [topic]               framework graph: which file to load for a topic
   store.py sql "<SELECT ...>"        read query
   store.py exec "<INSERT/UPDATE>"    write statement
 """
@@ -47,6 +48,10 @@ def main():
         rows(c, "SELECT key,value,source FROM rules WHERE domain=? AND active=1", (sys.argv[2],))
     elif cmd == "registry":
         rows(c, "SELECT name,source,install,usage,meta FROM registry WHERE kind=?", (sys.argv[2],))
+    elif cmd == "map":
+        q = f"%{sys.argv[2]}%" if len(sys.argv) > 2 else "%"
+        rows(c, "SELECT path,purpose,load_when,links FROM framework_map"
+                " WHERE purpose LIKE ? OR load_when LIKE ? OR path LIKE ?", (q, q, q))
     elif cmd == "sql":
         rows(c, sys.argv[2])
     elif cmd == "exec":

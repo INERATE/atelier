@@ -21,7 +21,9 @@ Understand → Clarify → Plan → Execute → Review → Compare vs Done-State
 
 Read BEFORE asking: the repo, CLAUDE.md, `workspace/project.md`, the store
 (`python <plugin>/db/store.py rules <domain>`), code-review-graph if present, and
-the web when facts are missing. Then write down: assumptions (things you'll take
+the web when facts are missing. **Don't hunt for framework files — query the
+map:** `python <plugin>/db/store.py map <topic>` returns exactly which
+skill/tool/agent to load for a topic (one query instead of directory reads). Then write down: assumptions (things you'll take
 as true) and unknowns (things only the user can settle).
 
 ## 2. Clarify (once, batched, only unknowns)

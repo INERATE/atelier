@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS asset_manifest  (id INTEGER PRIMARY KEY, src TEXT, ou
                                             kind TEXT, bytes_before INT, bytes_after INT);
 CREATE TABLE IF NOT EXISTS activity_log    (id INTEGER PRIMARY KEY, actor TEXT, action TEXT,
                                             detail TEXT, at TEXT);
+CREATE TABLE IF NOT EXISTS framework_map   (id INTEGER PRIMARY KEY, path TEXT, kind TEXT,  -- skill|agent|command|tool|template|doc
+                                            purpose TEXT, load_when TEXT, links TEXT);
 
 CREATE INDEX IF NOT EXISTS idx_rules_domain ON rules(domain, active);
 CREATE INDEX IF NOT EXISTS idx_criteria_plan ON done_criteria(plan_id, passed);

@@ -43,3 +43,27 @@ INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
  ('site','3dicons','https://3dicons.co','download png/gltf','1500+ free open-source 3D icons; color/angle editable in browser','3d,free'),
  ('site','Shapefest','https://shapefest.com','download png','free high-res 3D shapes/hands/letters (clay, glass, metal)','3d,free'),
  ('site','IconScout 3D','https://iconscout.com/3d-illustrations','download gltf','large 3D asset library, free tier, built-in glTF editor','3d,freemium');
+
+DELETE FROM framework_map;
+INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
+ ('skills/loop-engine/SKILL.md','skill','the operating loop, model routing table, clarification protocol, termination rule','any nontrivial task; deciding which model tier; when to stop or ask','architect,builder,summarizer'),
+ ('skills/design-law/SKILL.md','skill','premium UI law: vocabulary, tokens, motion, icons, component canon, anti-slop, checklist','any UI/design/landing/component/animation work','gateway,asset-pipeline,registry'),
+ ('skills/clean-code-law/SKILL.md','skill','250-word file budget, DRY via graph, comment policy, split strategies','writing or refactoring any source code','file_size_gate'),
+ ('skills/structure-law/SKILL.md','skill','canonical file trees per stack + intake questions','scaffolding, moving files, new projects','nextjs,fastapi'),
+ ('skills/auth-law/SKILL.md','skill','token rotation/families/grace, silent refresh, anti-patterns, shipping checklist','ANY authentication/session work','deploy-advisor'),
+ ('skills/deploy-advisor/SKILL.md','skill','hosting matrix with real costs; decision rules','choosing hosting, estimating costs, CI/CD setup',''),
+ ('skills/gateway/SKILL.md','skill','resolves authoritative design files (core + overlays)','START of any UI task, before design-law','design-law,learner'),
+ ('skills/asset-pipeline/SKILL.md','skill','webp/frames tools, scrollytelling recipe, video-gen credential ladder + paste-prompt','images, video, media generation, storytelling sections','assets.py,ScrollScrub'),
+ ('skills/stack-guides/nextjs.md','skill','Next.js decision rules + 5 agent mistakes','frontend work in Next.js','structure-law,design-law'),
+ ('skills/stack-guides/fastapi.md','skill','FastAPI decision rules + 5 agent mistakes','Python backend/AI service work','structure-law'),
+ ('agents/architect.md','agent','Opus planner: architecture + done-state contracts, never codes','/atelier:plan; architectural holes during build','loop-engine'),
+ ('agents/builder.md','agent','Sonnet executor: implements plan tasks under all laws','/atelier:build task execution','loop-engine,clean-code-law'),
+ ('agents/summarizer.md','agent','Haiku: digests, store updates, trivial edits','summaries, memory persistence, mechanical edits',''),
+ ('agents/learner.md','agent','Sonnet ingester: references -> overlays + registry rows, never touches core','/atelier:learn ingestion','gateway'),
+ ('db/store.py','tool','SQLite CLI: init/rules/registry/map/sql/exec, TOON-style pipe rows','reading rules, plans, criteria, registry, this map',''),
+ ('mcp/assets/assets.py','tool','image->webp, video->webp frames','optimizing any raster; scrollytelling frames','asset-pipeline'),
+ ('hooks/file_size_gate.py','tool','enforces 250/350-word file law on every write','automatic (PostToolUse hook)','clean-code-law'),
+ ('hooks/session_start.py','tool','resumes active plan + unmet criteria on session start','automatic (SessionStart hook)','loop-engine'),
+ ('templates/ScrollScrub.tsx','template','canvas scroll-scrubbed frame sequence component','building scrollytelling sections','asset-pipeline'),
+ ('docs/REQUIREMENTS.md','doc','full product spec: what Atelier is and why','understanding scope; contributor onboarding',''),
+ ('docs/IMPLEMENTATION-PLAN.md','doc','architecture, schema, phased build plan with gates','planning framework changes; contributor onboarding','');
