@@ -15,8 +15,8 @@ for secrets you cannot detect.
    and reactbits MCP servers (`.mcp.json` at plugin root — they register on
    install; first call npx-fetches them). Verify each responds; update
    `registry` rows' meta. For the rest (ponytail plugin, code-review-graph,
-   github-mcp): offer the install and ask a yes/no confirmation — never
-   install silently. If one needs a token (github-mcp PAT; optional
+   github-mcp; threejs-devtools-mcp only in 3D-heavy projects): offer the
+   install and ask a yes/no confirmation — never install silently. If one needs a token (github-mcp PAT; optional
    `GITHUB_TOKEN` lifts reactbits to 5k req/hr), ask the user to paste it in
    chat, write it to the project `.env` (gitignored — verify), and pass it via
    `claude mcp add … -e KEY=value`. If code-review-graph is installed but

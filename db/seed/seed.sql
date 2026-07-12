@@ -53,7 +53,13 @@ INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
  ('site','3dicons','https://3dicons.co','download png/gltf','1500+ free open-source 3D icons; color/angle editable in browser','3d,free'),
  ('site','Shapefest','https://shapefest.com','download png','free high-res 3D shapes/hands/letters (clay, glass, metal)','3d,free'),
  ('site','IconScout 3D','https://iconscout.com/3d-illustrations','download gltf','large 3D asset library, free tier, built-in glTF editor','3d,freemium'),
- ('site','Astro Starlight','https://starlight.astro.build','npm i astro @astrojs/starlight','docs-site framework: sidebar, search, dark/light built in; restyle via --sl-color vars','docs,free');
+ ('site','Astro Starlight','https://starlight.astro.build','npm i astro @astrojs/starlight','docs-site framework: sidebar, search, dark/light built in; restyle via --sl-color vars','docs,free'),
+ ('component','Spline','https://spline.design','npm i @splinetool/react-spline @splinetool/runtime','design 3D scenes visually, embed + control via runtime (findObjectByName/emitEvent); no public API — ignore Spline MCP servers','3d,freemium'),
+ ('component','React Three Fiber','https://r3f.docs.pmnd.rs','npm i three @react-three/fiber @react-three/drei','React renderer for three.js; drei helpers; dpr clamp + frameloop=demand','3d,free'),
+ ('component','Threlte','https://threlte.xyz','npm i three @threlte/core @threlte/extras','Svelte renderer for three.js; extras mirror drei','3d,free'),
+ ('component','Theatre.js','https://www.theatrejs.com','npm i @theatre/core @theatre/studio','keyframe/scroll-driven 3D sequencing; studio is DEV ONLY; @theatre/r3f bridge','3d,animated,free'),
+ ('site','PeachWeb','https://peachweb.io','visual builder, exports embeds','no-code 3D website builder (WebGL); for clients who want 3D without code','3d,paid'),
+ ('tool','threejs-devtools-mcp','npm:threejs-devtools-mcp','claude mcp add threejs-devtools-mcp -- npx threejs-devtools-mcp','inspect/edit a running three.js scene from the agent (59 tools); needs dev server up','3d,mcp');
 
 DELETE FROM framework_map;
 INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
@@ -68,6 +74,7 @@ INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
  ('skills/asset-pipeline/SKILL.md','skill','webp/frames tools, scrollytelling recipe, video/logo generation credential ladder + universal prompts','images, video, logo/brand-mark generation, media, storytelling sections','assets.py,ScrollScrub,design-law'),
  ('skills/living-graphics/SKILL.md','skill','continuous component animations: SVG flow schematics, traveling packets, pulsing nodes, state-reactive micro-experiences, Rive/Lottie option','animated cards, data-flow diagrams, dynamic infographics, ambient/continuous/loop animation, micro-interactions','design-law,asset-pipeline'),
  ('skills/docs-site/SKILL.md','skill','Astro Starlight docs-site recipe: separate repo, base path, token restyle, MDX vs md, Pages deploy workflow','documentation site, docs, knowledge base, developer guides, MDX','design-law,deploy-advisor'),
+ ('skills/web-3d/SKILL.md','skill','live 3D: Spline embed recipe, R3F/Threlte/three.js ladder, Theatre.js sequencing, 3D icons, performance laws, poster fallbacks','ANY 3D work — 3D hero, 3D icons, product viewer, WebGL, Spline, scroll-driven 3D','design-law,asset-pipeline,registry'),
  ('skills/stack-guides/nextjs.md','skill','Next.js decision rules + 5 agent mistakes','frontend work in Next.js','structure-law,design-law'),
  ('skills/stack-guides/fastapi.md','skill','FastAPI decision rules + 5 agent mistakes','Python backend/AI service work','structure-law'),
  ('skills/stack-guides/comms.md','skill','REST vs GraphQL vs gRPC vs SSE/WS vs TOON decision table','choosing protocols, streaming, real-time, API design','fastapi,redis-celery'),
