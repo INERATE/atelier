@@ -60,6 +60,7 @@ INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
  ('agents/builder.md','agent','Sonnet executor: implements plan tasks under all laws','/atelier:build task execution','loop-engine,clean-code-law'),
  ('agents/summarizer.md','agent','Haiku: digests, store updates, trivial edits','summaries, memory persistence, mechanical edits',''),
  ('agents/learner.md','agent','Sonnet ingester: references -> overlays + registry rows, never touches core','/atelier:learn ingestion','gateway'),
+ ('agents/design-scout.md','agent','parallel scout: studies premium component source (Aceternity/ReactBits/MagicUI) and returns technique briefs + durable rules','spawn alongside any UI build/plan task','design-law,registry,builder'),
  ('db/store.py','tool','SQLite CLI: init/rules/registry/map/sql/exec, TOON-style pipe rows','reading rules, plans, criteria, registry, this map',''),
  ('mcp/assets/assets.py','tool','image->webp, video->webp frames','optimizing any raster; scrollytelling frames','asset-pipeline'),
  ('hooks/file_size_gate.py','tool','enforces 250/350-word file law on every write','automatic (PostToolUse hook)','clean-code-law'),
