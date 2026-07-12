@@ -58,9 +58,13 @@ the curated companion skills/MCPs, and asks only for what it actually needs.
 
 ## Status
 
-Early. Phase 0 (scaffolding) in progress — see the
-[implementation plan](docs/IMPLEMENTATION-PLAN.md) for the phased roadmap and the
-[requirements spec](docs/REQUIREMENTS.md) for the full vision.
+Phases 0–2 core landed: the five law skills (loop-engine, design-law,
+clean-code-law, structure-law, auth-law) + deploy-advisor + gateway, model-pinned
+agents (architect/Opus, builder/Sonnet, summarizer/Haiku), 8 commands, the
+enforcement hooks (250-word gate, session-start plan resume), and the SQLite
+store with seeded rules + component registry. Next: registry & asset-pipeline
+MCPs (Phase 3), self-learning `/atelier:learn` (Phase 4) — see the
+[implementation plan](docs/IMPLEMENTATION-PLAN.md).
 
 ## Contributing
 
