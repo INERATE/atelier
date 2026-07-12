@@ -1,0 +1,17 @@
+# workspace state is per-project, never committed
+workspace/
+*.db
+*.db-wal
+*.db-shm
+
+# environments & secrets
+.env
+.env.*
+!.env.example
+
+# junk
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

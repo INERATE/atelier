@@ -1,0 +1,11 @@
+{
+  "name": "atelier-marketplace",
+  "owner": { "name": "Atelier contributors" },
+  "plugins": [
+    {
+      "name": "atelier",
+      "source": "./",
+      "description": "The craftsman's framework for AI-built software."
+    }
+  ]
+}

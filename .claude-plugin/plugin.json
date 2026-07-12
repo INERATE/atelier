@@ -1,0 +1,9 @@
+{
+  "name": "atelier",
+  "version": "0.1.0",
+  "description": "The craftsman's framework for AI-built software: done-state loop engineering, design law, clean-code enforcement, auto model routing, SQLite memory, and self-learning — in one install.",
+  "author": { "name": "Atelier contributors" },
+  "homepage": "https://github.com/growthcharters/atelier",
+  "license": "MIT",
+  "keywords": ["framework", "design-system", "loop-engineering", "model-routing", "clean-code", "sqlite", "self-learning"]
+}
