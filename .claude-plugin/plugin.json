@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "The craftsman's framework for AI-built software: done-state loop engineering, design law, clean-code enforcement, auto model routing, SQLite memory, and self-learning — in one install.",
   "author": { "name": "Piyush Sharma (ScienHAC)", "url": "https://github.com/ScienHAC" },
-  "homepage": "https://github.com/ScienHAC/atelier",
+  "homepage": "https://github.com/INERATE/atelier",
   "license": "MIT",
   "keywords": ["framework", "design-system", "loop-engineering", "model-routing", "clean-code", "sqlite", "self-learning"]
 }

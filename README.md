@@ -40,7 +40,7 @@ three:
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add ScienHAC/atelier
+/plugin marketplace add INERATE/atelier
 /plugin install atelier
 ```
 
