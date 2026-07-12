@@ -11,8 +11,9 @@ to by the store. This skill tells you what to read, in order.
 ## Protocol
 
 1. Query the pointers:
-   `python <plugin>/db/store.py sql "SELECT path, kind FROM design_guide_versions WHERE promoted=0 ORDER BY id"`
-   (no db / no rows → core law only).
+   `python <plugin>/db/store.py sql "SELECT path, kind, promoted FROM design_guide_versions ORDER BY id"`
+   (no db / no rows → core law only). Promoted rows live in the project's
+   `docs/design/`; unpromoted ones in `workspace/overlays/` — read both.
 2. Read in order: `skills/design-law/SKILL.md` first, then each overlay —
    later overlays override earlier ones; every overlay overrides core **except**
    the anti-style list and the token-centralization rule, which are inviolable.

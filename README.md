@@ -19,57 +19,98 @@ three:
 - **Loop engineering with base cases** — every task runs against a written
   done-state contract and may not claim success until every criterion passes.
 - **Design law, not vibes** — Apple-HIG editorial minimalism, enterprise motion
-  choreography, named tokens, a component registry the agent picks from. The
-  "AI-slop template look" is named and banned.
-- **Clean-code law** — 250 words per file, enforced by a hook, not a hope. DRY,
-  YAGNI, stdlib-first (ponytail built in).
-- **Automatic model routing** — Opus plans like a principal engineer, Sonnet builds
-  like a senior dev, Haiku summarizes. You never switch models manually.
-- **Token-cheap memory** — rules and plans live in SQLite rows (served as TOON, not
-  JSON), whole-repo awareness via code-review-graph, laws as progressive-disclosure
-  skills.
+  choreography, centralized theme tokens (dark/light/any theme = one file, zero
+  page edits), a component registry the agent picks from. The "AI-slop template
+  look" is named and banned.
+- **Clean-code law** — 250 words per file, enforced by a hook, not a hope.
+- **Automatic model routing** — Opus plans, Sonnet builds, Haiku summarizes.
+  You never switch models manually.
+- **Token-cheap memory** — rules, plans, and registries live in SQLite rows
+  served as lean pipe-rows, not re-read markdown.
 - **Battle-tested auth law** — rotating refresh tokens, families, grace windows,
-  silent refresh, and the exact anti-patterns that corrupt auth, shipped as a skill.
-- **Self-learning** — drop a screenshot, a URL, or a repo; Atelier learns it into an
+  silent refresh, and the exact anti-patterns that corrupt auth.
+- **Native asset pipeline** — image→webp, video→webp frames→scroll-scrubbed
+  scrollytelling, and AI video generation (Gemini Omni Flash / Veo 3.1) with a
+  graceful paste-prompt fallback when there's no API key.
+- **Self-learning** — drop a screenshot or URL; Atelier learns it into an
   overlay without ever touching its read-only core.
 
-## Install
+## Install (Claude Code)
 
 ```
-/plugin marketplace add <this-repo>
+/plugin marketplace add <owner>/atelier      # this GitHub repo
 /plugin install atelier
-/atelier:bootstrap
 ```
 
-Bootstrap probes your environment, creates the workspace + SQLite store, installs
-the curated companion skills/MCPs, and asks only for what it actually needs.
+Requirements: Python 3.10+ on PATH. Optional: ffmpeg (video frames),
+Pillow (image compression), a Google AI key (media generation).
 
-## Commands
+## Start (in your project folder)
+
+```
+/atelier:bootstrap    # once — probes your machine, creates workspace/atelier.db,
+                      # checks companions, asks (optionally) for a Google AI key
+/atelier:plan <what you want to build>
+```
+
+`plan` runs intake (paste a project doc or answer one batch of questions —
+stack, layout, auth mode, hosting with real costs, your ONE brand accent),
+then the Opus architect writes the architecture and a **done-state contract**
+into the store. Then:
+
+```
+/atelier:build        # Sonnet executes task-by-task; refuses to "finish" with unmet criteria
+/atelier:review       # ponytail + graph + lint + design + size gates, evidence recorded
+/atelier:ship         # final gate: every criterion re-verified, ship report with deploy costs
+```
+
+## The flow
+
+```
+/atelier:plan ──► Understand → Clarify(one batch) → Architecture + Done-State ──► SQLite
+                                                                                    │
+/atelier:build ─► builder(Sonnet) task loop ─► hooks enforce laws ─► criteria pass ─┘
+                     │ architectural hole? → back to architect(Opus)
+/atelier:review ─► gates update evidence        /atelier:ship ─► all green → shipped
+```
+
+Sessions are disposable; state isn't — plans and criteria live in
+`workspace/atelier.db`, and a session-start hook resumes the active plan after
+any compaction or restart.
+
+## All commands
 
 | Command | Purpose |
 |---------|---------|
-| `/atelier:bootstrap` | One-shot setup of everything |
-| `/atelier:plan` | Opus intake → architecture → done-state contract |
+| `/atelier:bootstrap` | One-shot setup: store, doctor, companions, credentials |
+| `/atelier:plan` | Intake → architecture → done-state contract (Opus) |
 | `/atelier:clarify` | Understand first, then ask only the unknowns |
-| `/atelier:build` | Sonnet executes the plan through the loop engine |
-| `/atelier:review` | Ponytail + graph + lint + design + size gates |
-| `/atelier:learn` | Teach it: images, URLs, code, new skills/MCPs |
-| `/atelier:doctor` / `status` / `ship` / `update` | Health, progress, release, upgrades |
+| `/atelier:build` | Execute the plan through the loop engine (Sonnet) |
+| `/atelier:review` | All quality gates, evidence into the contract |
+| `/atelier:learn` | Teach it: screenshots, URLs, code, new skills/MCPs → overlays |
+| `/atelier:promote` | Make a learned overlay permanent, git-tracked law |
+| `/atelier:ship` | Final release gate + deploy plan with costs |
+| `/atelier:status` / `doctor` | Progress · health checks |
+
+## Self-learning in 30 seconds
+
+Paste a screenshot in chat (or drop files in `workspace/references/`) →
+`/atelier:learn` → the learner writes `workspace/overlays/NNN-<slug>.md` + a
+pointer row. Every UI task reads core law + your overlays via the gateway.
+Love it forever? `/atelier:promote` moves it into `docs/design/` (git-tracked).
+Core framework files are never edited at runtime — a `git pull` can't clobber
+your taste, and your taste can't corrupt the core.
 
 ## Status
 
-Phases 0–2 core landed: the five law skills (loop-engine, design-law,
-clean-code-law, structure-law, auth-law) + deploy-advisor + gateway, model-pinned
-agents (architect/Opus, builder/Sonnet, summarizer/Haiku), 8 commands, the
-enforcement hooks (250-word gate, session-start plan resume), and the SQLite
-store with seeded rules + component registry. Next: registry & asset-pipeline
-MCPs (Phase 3), self-learning `/atelier:learn` (Phase 4) — see the
-[implementation plan](docs/IMPLEMENTATION-PLAN.md).
+Phases 0–4 landed: laws, agents, commands, hooks, store, asset pipeline,
+self-learning. Phase 5 (mcp-maker, /update migrations, more stack guides) is
+next — see the [implementation plan](docs/IMPLEMENTATION-PLAN.md).
 
 ## Contributing
 
-New skills, component-registry MCPs, stack guides, and deployment recipes are the
-main contribution surfaces. Read [CONTRIBUTING.md](CONTRIBUTING.md) — every
+New skills, component-registry MCPs, stack guides, and deployment recipes are
+the main contribution surfaces. Read [CONTRIBUTING.md](CONTRIBUTING.md) — every
 contribution passes the same gates Atelier enforces on generated code.
 
 ## License
