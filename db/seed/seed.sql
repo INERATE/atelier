@@ -15,7 +15,10 @@ INSERT INTO rules (domain,key,value,source) VALUES
  ('auth','refresh','silent one-shot timer + on-demand; single mutex per app; NEVER poll','core'),
  ('auth','redirect','login redirect is the LAST resort after silent refresh + session check','core'),
  ('stack','realtime','SSE or WebSockets, never polling; cache invalidation on write','core'),
- ('stack','llm_payloads','TOON over JSON for LLM-bound payloads; gRPC backend-to-backend','core');
+ ('stack','llm_payloads','TOON over JSON for LLM-bound payloads; gRPC backend-to-backend','core'),
+ ('stack','video_gen','ladder: GOOGLE_API_KEY (gemini-omni-flash-preview/Veo3.1) -> Vertex creds -> paste-prompt to Gemini app -> user mp4; never exit on missing token','core'),
+ ('stack','credentials','project .env (gitignored), standard var names GOOGLE_API_KEY | GOOGLE_APPLICATION_CREDENTIALS+GOOGLE_CLOUD_PROJECT+GOOGLE_CLOUD_LOCATION; never in db or commits','core'),
+ ('stack','assets','every raster -> webp via assets.py before serving; video -> frames -> webp for scrollytelling','core');
 
 DELETE FROM registry WHERE kind IN ('component','skill','mcp');
 INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
