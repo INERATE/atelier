@@ -32,11 +32,11 @@ INSERT INTO rules (domain,key,value,source) VALUES
 DELETE FROM registry WHERE id NOT IN (SELECT MIN(id) FROM registry GROUP BY kind,name);
 CREATE UNIQUE INDEX IF NOT EXISTS registry_kind_name ON registry(kind,name);
 INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
- ('component','shadcn/ui','https://ui.shadcn.com','shadcn MCP / npx shadcn add','Radix primitives; restyle to tokens','a11y,ssr,dark'),
- ('component','Aceternity UI','https://ui.aceternity.com','aceternityui MCP','premium animated sections; strip to one accent','animated,dark'),
- ('component','ReactBits','https://reactbits.dev','react-bits MCP','micro-interaction components','animated'),
+ ('component','shadcn/ui','https://ui.shadcn.com','MCP bundled with atelier / npx shadcn add','Radix primitives; restyle to tokens','a11y,ssr,dark,bundled-mcp'),
+ ('component','Aceternity UI','https://ui.aceternity.com','MCP bundled with atelier / npx aceternity-ui add','premium animated sections; strip to one accent','animated,dark,bundled-mcp'),
+ ('component','ReactBits','https://reactbits.dev','MCP bundled with atelier (GITHUB_TOKEN optional, lifts rate limit)','micro-interaction components','animated,bundled-mcp'),
  ('component','Motion.dev','https://motion.dev','npm i motion','springs, layout morphs','animated'),
- ('component','MagicUI','https://magicui.design','npx magicui add','marketing components; token restyle required','animated,dark'),
+ ('component','MagicUI','https://magicui.design','MCP bundled with atelier / npx magicui-cli add','marketing components; token restyle required','animated,dark,bundled-mcp'),
  ('skill','ponytail','github:ponytail','/plugin install ponytail','minimalism enforcement on every coding task',''),
  ('skill','ui-ux-pro-max','local skill','installed','style/palette/font intelligence for UI work',''),
  ('mcp','code-review-graph','local','code-review-graph build','structural graph: impact radius, callers, tests-for',''),

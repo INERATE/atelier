@@ -11,10 +11,16 @@ for secrets you cannot detect.
 2. **Create the store**: `python "${CLAUDE_PLUGIN_ROOT}/db/store.py" init` —
    creates `workspace/atelier.db` with schema + seeded rules/registry. Add
    `workspace/` to the project `.gitignore` if missing.
-3. **Verify companions**: check which registry MCPs (shadcn, aceternity,
-   react-bits, stitch) and skills (ponytail, code-review-graph) are available;
-   update `registry` rows' meta with availability. If code-review-graph is
-   installed but unindexed, run `code-review-graph build`.
+3. **Verify companions**: the plugin BUNDLES the shadcn, magicui, aceternityui,
+   and reactbits MCP servers (`.mcp.json` at plugin root — they register on
+   install; first call npx-fetches them). Verify each responds; update
+   `registry` rows' meta. For the rest (ponytail plugin, code-review-graph,
+   github-mcp): offer the install and ask a yes/no confirmation — never
+   install silently. If one needs a token (github-mcp PAT; optional
+   `GITHUB_TOKEN` lifts reactbits to 5k req/hr), ask the user to paste it in
+   chat, write it to the project `.env` (gitignored — verify), and pass it via
+   `claude mcp add … -e KEY=value`. If code-review-graph is installed but
+   unindexed, run `code-review-graph build`.
 4. **Credentials (optional — never block on this)**: ask ONE question — how to
    connect Google AI for media generation: (a) public Gemini API key →
    `GOOGLE_API_KEY`, (b) Vertex AI → paste the service-account JSON **path** →

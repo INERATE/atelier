@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    },
+    "magicui": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@magicuidesign/mcp@latest"]
+    },
+    "aceternityui": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "aceternityui-mcp"]
+    },
+    "reactbits": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "reactbits-dev-mcp-server"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN:-}"
+      }
+    }
+  }
+}
