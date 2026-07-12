@@ -63,13 +63,25 @@ Tell the user: paste into the Gemini app, download the mp4, drop it in
 pipeline handles frames automatically. If Gemini refuses, simplify the Subject
 line (concrete object, neutral scene) and retry once.
 
+## Image generation — pick the model by job (same credential ladder)
+
+| Model ID | Speed / cost | Use for |
+|----------|-------------|---------|
+| `gemini-3.1-flash-lite-image` (Nano Banana 2 Lite) | sub-2s, cheapest, 1K max | **bulk + drafts**: storyboard frames, icon/variant batches, layout comps, anything iterated fast; supports multi-turn local edits |
+| `gemini-3.1-flash-image` | fast, up to 4K, strong text rendering | **default** for final site imagery and logos |
+| `gemini-3-pro-image` | slow, premium | complex hero compositions only |
+
+`gemini-2.5-flash-image` is legacy — never use it in new work. For
+storytelling, offer the user the Lite option explicitly: a 20–30 frame
+storyboard costs ~$1 and lands in under a minute, then regenerate only the
+keeper frames on the default model.
+
 ## Logo & brand-mark generation (same ladder, image models)
 
-When a project needs a logo/mark: rung 1–2 call the Gemini **image** models
-with the same credentials (`gemini-2.5-flash-image` / Imagen via
-`GOOGLE_API_KEY`, or Vertex Imagen with service-account creds); rung 3 emit
-the universal prompt below for ANY platform (Gemini app, ChatGPT/DALL·E,
-Midjourney). Always generate light + dark variants, convert to webp, and
+When a project needs a logo/mark: rung 1–2 call the Gemini image models
+above with the same credentials (`GOOGLE_API_KEY`, or Vertex with
+service-account creds); rung 3 emit the universal prompt below for ANY
+platform (Gemini app, ChatGPT/DALL·E, Midjourney). Always generate light + dark variants, convert to webp, and
 check crispness at 16px. The mark must obey design-law: flat vector look,
 hairline geometry, near-monochrome + the project's ONE accent — never
 gradients, 3D, or mascots.
