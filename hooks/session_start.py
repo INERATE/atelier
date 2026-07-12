@@ -10,9 +10,13 @@ def context():
     if not os.path.exists(DB):
         return ""
     c = sqlite3.connect(DB)
-    plan = c.execute(
-        "SELECT id,title FROM plans WHERE status='active' ORDER BY id DESC LIMIT 1"
-    ).fetchone()
+    try:
+        plan = c.execute(
+            "SELECT id,title FROM plans WHERE status='active' ORDER BY id DESC LIMIT 1"
+        ).fetchone()
+    except sqlite3.OperationalError:
+        # db file exists but store never initialized — treat as no store
+        return ""
     if not plan:
         return "Atelier store present; no active plan. /atelier:plan to start."
     unmet = c.execute(
