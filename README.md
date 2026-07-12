@@ -6,7 +6,7 @@
 
 *One install turns your coding agent into a principal engineer — with taste.*
 
-[Requirements](docs/REQUIREMENTS.md) · [Architecture](docs/IMPLEMENTATION-PLAN.md) · [Contributing](CONTRIBUTING.md)
+[Requirements](docs/REQUIREMENTS.md) · [Contributing](CONTRIBUTING.md)
 
 </div>
 
@@ -110,7 +110,7 @@ guides), 5 model-pinned agents (architect, builder, summarizer, learner,
 design-scout), 11 commands, enforcement hooks, CI, the SQLite store with a
 27-node framework map, the asset pipeline, and self-learning overlays.
 Open items: the media-generation daemon (gRPC) and broader cross-runtime
-adapters — see the [implementation plan](docs/IMPLEMENTATION-PLAN.md).
+adapters.
 
 ## Contributing
 
