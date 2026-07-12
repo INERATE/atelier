@@ -6,7 +6,7 @@
 
 *One install turns your coding agent into a principal engineer — with taste.*
 
-[**inerate.github.io**](https://inerate.github.io) · [Requirements](docs/REQUIREMENTS.md) · [Contributing](CONTRIBUTING.md)
+[**inerate.github.io**](https://inerate.github.io) · [Requirements](docs/REQUIREMENTS.md) · [Contributing](CONTRIBUTING.md) · [Releasing & updates](docs/RELEASING.md)
 
 </div>
 
