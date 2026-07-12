@@ -37,6 +37,17 @@ Stripe's payment flows).
 - Color: monochrome ink for structure; the ONE accent marks only what moves
   (packets, the live node). Text: 10–11px uppercase, tracked, `--ink-3`.
 
+## Synchronized loops (the premium move)
+
+One packet looping is a screensaver; a **choreographed cycle** is a story.
+Give EVERY animated element the same `animation-duration` (one master cycle,
+e.g. 8s, all `linear infinite`) and stage each element inside its own keyframe
+percentage window: packet travels 0–14%, next box's stroke lights 16–46%, its
+rows brighten in sequence, checks draw 58–73%, the end node flashes 86–94%,
+everything resets by 100%. Activity visibly *travels through the diagram* and
+the loop restarts clean — still zero JS. Never use `animation-delay` to sync
+infinite loops across elements; delays shift phase forever. Windows, not delays.
+
 ## Laws (design-law still governs)
 
 - Animate ONLY `transform`, `opacity`, `stroke-dashoffset`, `offset-distance` —
