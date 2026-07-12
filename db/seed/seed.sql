@@ -30,4 +30,16 @@ INSERT INTO registry (kind,name,source,install,usage,meta) VALUES
  ('skill','ponytail','github:ponytail','/plugin install ponytail','minimalism enforcement on every coding task',''),
  ('skill','ui-ux-pro-max','local skill','installed','style/palette/font intelligence for UI work',''),
  ('mcp','code-review-graph','local','code-review-graph build','structural graph: impact radius, callers, tests-for',''),
- ('mcp','stitch','MCP','installed','high-fidelity screen generation + design systems','');
+ ('mcp','stitch','MCP','installed','high-fidelity screen generation + design systems',''),
+ ('component','Cult UI','https://cult-ui.com','npx cult-ui add','shadcn-ecosystem components with tasteful motion (dialogs/tabs/buttons)','animated,shadcn'),
+ ('component','Kokonut UI','https://kokonutui.com','npx kokonutui add','shadcn-ecosystem motion components for app UI','animated,shadcn'),
+ ('component','Motion Primitives','https://motion-primitives.com','npm i motion','low-level composable Framer Motion blocks for custom effects','animated'),
+ ('tool','magicui-cli','https://magicui.design','npx magicui-cli add <component>','fetch MagicUI components via CLI (no MCP needed)',''),
+ ('tool','aceternity-cli','https://ui.aceternity.com','npx aceternity-ui@latest add <component>','fetch Aceternity components via CLI',''),
+ ('tool','github-mcp','npm:@modelcontextprotocol/server-github','npx -y @modelcontextprotocol/server-github (needs PAT)','read any component library source from its repo — no hallucination',''),
+ ('site','Iconoir','https://iconoir.com','npm i iconoir-react','1600+ free SVG icons; React/RN/CSS native','icons,free'),
+ ('site','Phosphor Icons','https://phosphoricons.com','npm i @phosphor-icons/react','6 weights per icon; thin/light match design-law stroke discipline','icons,free'),
+ ('site','Heroicons','https://heroicons.com','npm i @heroicons/react','Tailwind-native icon set','icons,free'),
+ ('site','3dicons','https://3dicons.co','download png/gltf','1500+ free open-source 3D icons; color/angle editable in browser','3d,free'),
+ ('site','Shapefest','https://shapefest.com','download png','free high-res 3D shapes/hands/letters (clay, glass, metal)','3d,free'),
+ ('site','IconScout 3D','https://iconscout.com/3d-illustrations','download gltf','large 3D asset library, free tier, built-in glTF editor','3d,freemium');
