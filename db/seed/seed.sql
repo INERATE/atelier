@@ -51,7 +51,8 @@ INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
  ('site','Heroicons','https://heroicons.com','npm i @heroicons/react','Tailwind-native icon set','icons,free'),
  ('site','3dicons','https://3dicons.co','download png/gltf','1500+ free open-source 3D icons; color/angle editable in browser','3d,free'),
  ('site','Shapefest','https://shapefest.com','download png','free high-res 3D shapes/hands/letters (clay, glass, metal)','3d,free'),
- ('site','IconScout 3D','https://iconscout.com/3d-illustrations','download gltf','large 3D asset library, free tier, built-in glTF editor','3d,freemium');
+ ('site','IconScout 3D','https://iconscout.com/3d-illustrations','download gltf','large 3D asset library, free tier, built-in glTF editor','3d,freemium'),
+ ('site','Astro Starlight','https://starlight.astro.build','npm i astro @astrojs/starlight','docs-site framework: sidebar, search, dark/light built in; restyle via --sl-color vars','docs,free');
 
 DELETE FROM framework_map;
 INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
@@ -65,6 +66,7 @@ INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
  ('skills/gateway/SKILL.md','skill','resolves authoritative design files (core + overlays)','START of any UI task, before design-law','design-law,learner'),
  ('skills/asset-pipeline/SKILL.md','skill','webp/frames tools, scrollytelling recipe, video/logo generation credential ladder + universal prompts','images, video, logo/brand-mark generation, media, storytelling sections','assets.py,ScrollScrub,design-law'),
  ('skills/living-graphics/SKILL.md','skill','continuous component animations: SVG flow schematics, traveling packets, pulsing nodes, state-reactive micro-experiences, Rive/Lottie option','animated cards, data-flow diagrams, dynamic infographics, ambient/continuous/loop animation, micro-interactions','design-law,asset-pipeline'),
+ ('skills/docs-site/SKILL.md','skill','Astro Starlight docs-site recipe: separate repo, base path, token restyle, MDX vs md, Pages deploy workflow','documentation site, docs, knowledge base, developer guides, MDX','design-law,deploy-advisor'),
  ('skills/stack-guides/nextjs.md','skill','Next.js decision rules + 5 agent mistakes','frontend work in Next.js','structure-law,design-law'),
  ('skills/stack-guides/fastapi.md','skill','FastAPI decision rules + 5 agent mistakes','Python backend/AI service work','structure-law'),
  ('skills/stack-guides/comms.md','skill','REST vs GraphQL vs gRPC vs SSE/WS vs TOON decision table','choosing protocols, streaming, real-time, API design','fastapi,redis-celery'),
