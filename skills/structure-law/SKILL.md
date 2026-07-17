@@ -8,6 +8,34 @@ description: The Atelier Structure Law — canonical, industrial-standard file s
 Every stack has ONE canonical layout. Repos never invent their own. Structure
 is settled at intake and recorded in `projects` — never re-litigated per task.
 
+## The structure ladder (pick by project size, once)
+
+There is no single "correct" structure — there is one correct structure **per
+project size**. Climb only as far as the project demands:
+
+| Project shape | Structure |
+|---|---|
+| Portfolio, practice app, tiny site | **Flat** — `src/{components,pages,assets}` |
+| Medium app, small team | **Type-based** — `src/{components,hooks,services,utils,context,pages,types}` |
+| Production app, SaaS, dashboards | **Feature-based** — `src/features/<name>/{components,hooks,api,pages,types,index.ts}` + `shared/ layouts/ routes/` |
+| Design system / component library | **Atomic** — `components/{atoms,molecules,organisms,templates,pages}` |
+| Large multi-domain SaaS / enterprise | **Domain-driven** — `src/modules/{users,orders,payments,…}` |
+
+Rules of the ladder:
+
+- **Feature-based is the production default.** Related files stay together;
+  features ship and delete as units. Type-based scatters one feature across
+  seven folders — acceptable only below ~30 components.
+- **Atomic only for reusable component libraries.** In a product app it forces
+  "is this a molecule or organism?" debates that produce zero user value.
+- **Never scaffold a higher rung "for later"** — a flat project moves to
+  feature-based when the second real feature lands, not before (ponytail).
+- Each feature exports through its own `index.ts`; nothing deep-imports across
+  features. But **no giant root barrels** — one `index.ts` re-exporting the
+  world breaks tree-shaking and creates circular imports.
+- Colocate what only one route uses (App Router: `_components/` inside the
+  route). Promote to `shared/` on second use, never on first.
+
 ## Intake questions (asked once)
 
 1. Frontend and backend: separate repos or one? *(default: one repo, separated

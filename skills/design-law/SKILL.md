@@ -37,6 +37,13 @@ skill — overlays in `design_guide_versions` may extend this law.
   editorial accents, monochrome discipline.
 - **GC Design Language** (GrowthCharters) — the parent of this law; emerald
   accent variant proving the system is brand-parameterizable.
+- **Layers (getlayers.ai)** — "AI builds generic. We make it cinematic." Their
+  library proves premium pages are assembled from a **cinematic layer stack**,
+  not improvised per page: a named background layer (their catalog: 53
+  backgrounds vs 27 full templates), one three.js hero/3D scene as the single
+  showpiece, then calm sections beneath. Adopt the discipline: backgrounds and
+  3D scenes are reusable named assets picked from a catalog (registry/web-3d),
+  ONE cinematic moment per page — the hero; everything below it earns quiet.
 
 ## 3. Tokens (numbers, not vibes)
 
