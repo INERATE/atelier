@@ -21,8 +21,9 @@ def _poll(get, tries=60):
     raise TimeoutError("generation did not finish")
 
 
-def _gemini(prompt, key, out):
-    body = {"instances": [{"prompt": prompt}], "parameters": {"aspectRatio": "16:9"}}
+def _gemini(prompt, key, out, audio=False):
+    body = {"instances": [{"prompt": prompt}],
+            "parameters": {"aspectRatio": "16:9", "generateAudio": bool(audio)}}
     hdr = {"Content-Type": "application/json"}
     for m in MODELS:
         try:
@@ -38,7 +39,7 @@ def _gemini(prompt, key, out):
     return None
 
 
-def _vertex(prompt, out):
+def _vertex(prompt, out, audio=False):
     import google.auth  # only needed on this rung
     from google.auth.transport.requests import Request
     cred, proj = google.auth.default(
@@ -53,7 +54,8 @@ def _vertex(prompt, out):
         try:
             op = _post(f"{base}/{m}:predictLongRunning",
                        {"instances": [{"prompt": prompt}],
-                        "parameters": {"aspectRatio": "16:9", "sampleCount": 1}}, hdr)
+                        "parameters": {"aspectRatio": "16:9", "sampleCount": 1,
+                                       "generateAudio": bool(audio)}}, hdr)
         except Exception:
             continue
         done = _poll(lambda: _post(f"{base}/{m}:fetchPredictOperation",
@@ -64,17 +66,19 @@ def _vertex(prompt, out):
     return None
 
 
-def generate(subject, out="generated.mp4", **kw):
-    """Returns (rung, detail). rung 3 means: no creds, hand the prompt over."""
-    prompt = build(subject, **kw)
+def generate(subject, out="generated.mp4", audio=False, **kw):
+    """Returns (rung, detail). rung 3 means: no creds, hand the prompt over.
+    audio=False is the scrollytelling default (scrubbed video has no playback);
+    pass a soundscape string for hero/social video - ASK, never assume silence."""
+    prompt = build(subject, audio=audio, **kw)
     key = os.getenv("GOOGLE_API_KEY")
     if key:
-        m = _gemini(prompt, key, out)
+        m = _gemini(prompt, key, out, audio)
         if m:
             return 1, m
     if os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
         try:
-            m = _vertex(prompt, out)
+            m = _vertex(prompt, out, audio)
             if m:
                 return 2, m
         except Exception as e:

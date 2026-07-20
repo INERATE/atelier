@@ -20,7 +20,20 @@ def test_bad_key_still_falls_through():
     assert rung == 3, "an invalid key must degrade to rung 3, not crash"
 
 
+def test_audio_reaches_the_request_body():
+    """The v0.3.3 bug: prompt said 'no audio' and generateAudio was never sent,
+    so every video came back silent with no way to ask for sound."""
+    sent = {}
+    video._post = lambda url, body, hdr: sent.update(body) or (_ for _ in ()).throw(
+        RuntimeError("stop after capture"))
+    os.environ["GOOGLE_API_KEY"] = "x"
+    video.generate("a cube", audio="low industrial hum")
+    assert sent["parameters"]["generateAudio"] is True, sent
+    assert "industrial hum" in sent["instances"][0]["prompt"]
+
+
 if __name__ == "__main__":
     test_rung3_when_no_credentials()
     test_bad_key_still_falls_through()
+    test_audio_reaches_the_request_body()
     print("ok")

@@ -42,6 +42,23 @@ python <plugin>/mcp/assets/video.py "a slow orbit around a matte black cube"
 # or: from video import generate; rung, detail = generate(subject, out="hero.mp4")
 ```
 
+### Audio — silence is a choice, not a default to inherit
+
+Veo 3+ generates **synced audio natively** (its headline feature over Veo 2).
+Two things must agree or you get silence:
+
+```python
+generate("a machine room", audio="low industrial hum, distant servos")
+```
+
+This sets `generateAudio: true` in the request **and** writes the soundscape into
+the prompt. Setting only the prompt does nothing — the API param governs.
+
+`audio=False` (the default) is correct **only** for scroll-scrubbed
+scrollytelling, where the browser never plays the file. For a hero, demo, or
+social video, **ask the user** — do not inherit silence from the scrollytelling
+recipe below. That inheritance shipped silent Veo 3 output for exactly this reason.
+
 `generate()` returns `(rung, detail)`. Rungs 1–2 wrote the mp4 and `detail` is the
 model that served it. **Rung 3 means `detail` IS the paste-prompt** — that is a
 success path, not a failure: show it to the user and keep working. An expired key
@@ -50,7 +67,7 @@ falls through to the next rung instead of raising.
 | Rung | Needs | Model |
 |------|-------|-------|
 | 1. Public Gemini API | `GOOGLE_API_KEY` | `gemini-omni-flash-preview` (live since 2026-06-30); Veo 3.1 fallback |
-| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | Veo 3.1 now; Omni Flash as Vertex rollout completes |
+| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | Veo 3.1 → 3.0. **Omni Flash 404s on Vertex as of 2026-07** (confirmed) — it is Gemini-API-only until rollout completes, so rung 2 means Veo, not Omni. Report which model actually served. |
 | 3. **No credentials** | nothing | Emit the paste-prompt below for the user's Gemini app (Omni Flash powers it for subscribers). NOT an error — say "no token, continuing" and proceed. |
 | 4. Nothing works | — | Ask the user to drop any mp4 into `workspace/references/video/`. |
 
@@ -60,7 +77,9 @@ Never store keys in the SQLite store or any committed file.
 
 ## The paste-prompt (rung 3 — write it FOR the user, filled in)
 
-> Generate a short video, no audio, for a website scroll animation.
+> Generate a short video for a website scroll animation.
+> **Audio:** none — silent scroll-scrubbed footage. *(For a hero/social video
+> instead, replace this line with the soundscape you want.)*
 > **Subject:** <one concrete scene — object, environment, mood>.
 > **Style:** premium industrial minimalism; near-monochrome palette on a dark
 > `#0A0A0B` background with a single <accent color> accent; soft studio
