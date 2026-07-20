@@ -3,7 +3,11 @@ import base64, os, sys
 import video_omni
 from video_http import post, poll
 
-VEO = ["veo-3.1-generate-preview", "veo-3.0-generate-001"]
+# GA first, then fast preview, then the deprecated 3.0 as a last resort.
+# veo-3.0-generate-001 was slated for discontinuation 2026-06-30 - it still
+# answers for some projects but must not be the primary target.
+VEO = ["veo-3.1-generate-001", "veo-3.1-fast-generate-preview",
+       "veo-3.0-generate-001"]
 
 
 def _auth():

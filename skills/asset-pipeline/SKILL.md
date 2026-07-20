@@ -81,7 +81,7 @@ falls through to the next rung instead of raising.
 | Rung | Needs | Model |
 |------|-------|-------|
 | 1. Public Gemini API | `GOOGLE_API_KEY` | `gemini-omni-flash-preview` (live since 2026-06-30); Veo 3.1 fallback |
-| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | **Veo 3.0 is what actually serves** (3.1 preview 404s on many projects). Omni is tried first only when `audio=False` — it is silent-only and speaks the `v1beta1 interactions` API, not `predictLongRunning`; probing it the Veo way 404s and misreads as "model missing". Always report which model served. |
+| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | **`veo-3.1-generate-001`** (GA) is the correct primary target. `veo-3.1-generate-**preview**` is a *different, experimental* id that 404s on most projects — mistaking it for "3.1 unavailable" is why builds silently fell back. `veo-3.0-generate-001` was slated for discontinuation **2026-06-30**: last resort only. Omni is tried first only when `audio=False` — it is silent-only and speaks the `v1beta1 interactions` API, not `predictLongRunning`; probing it the Veo way 404s and misreads as "model missing". Always report which model served. |
 | 3. **No credentials** | nothing | Emit the paste-prompt below for the user's Gemini app (Omni Flash powers it for subscribers). NOT an error — say "no token, continuing" and proceed. |
 | 4. Nothing works | — | Ask the user to drop any mp4 into `workspace/references/video/`. |
 
