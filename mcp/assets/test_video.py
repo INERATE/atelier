@@ -32,26 +32,38 @@ def test_audio_reaches_the_request_body():
     assert "industrial hum" in sent["instances"][0]["prompt"]
 
 
-def test_audio_never_routes_to_omni():
-    """Omni has no audio track. Asking for sound must reach Veo, not Omni -
-    otherwise it 'succeeds' and silently returns a silent file."""
+def test_silent_omni_result_falls_through_to_veo():
+    """Whether Omni returns audio is disputed in Google's own docs, so the
+    rule is measured, not assumed: if an audio request comes back silent,
+    it must reach Veo instead of being handed over as a silent file."""
     import video_omni, video_vertex
-    video_omni.generate = lambda *a: (_ for _ in ()).throw(
-        AssertionError("Omni must never serve an audio request"))
-    video_vertex.post = lambda url, body, hdr: (_ for _ in ()).throw(
-        RuntimeError(f"reached veo: {url}"))
+    reached = []
+    video_omni.generate = lambda *a: "gemini-omni-flash-preview"
+    video_vertex._has_audio = lambda p: False  # Omni gave us silence
     video_vertex._auth = lambda: ("token", "proj")
+    video_vertex._playable = lambda p: True
+    video_vertex.post = lambda url, body, hdr: reached.append(url) or (
+        _ for _ in ()).throw(RuntimeError("stop at veo"))
     try:
         video_vertex.generate("a cube", "out.mp4", audio="a hum")
-    except AssertionError:
-        raise
     except Exception:
-        pass  # reached Veo and stopped there: correct routing
+        pass
+    assert reached, "silent Omni output must fall through to Veo"
+    assert "veo-3.1-generate-001" in reached[0], reached
+
+
+def test_silent_omni_is_fine_when_no_audio_wanted():
+    import video_omni, video_vertex
+    video_omni.generate = lambda *a: "gemini-omni-flash-preview"
+    video_vertex._auth = lambda: ("token", "proj")
+    video_vertex._playable = lambda p: True
+    assert video_vertex.generate("a cube", "out.mp4") == "gemini-omni-flash-preview"
 
 
 if __name__ == "__main__":
     test_rung3_when_no_credentials()
     test_bad_key_still_falls_through()
     test_audio_reaches_the_request_body()
-    test_audio_never_routes_to_omni()
+    test_silent_omni_result_falls_through_to_veo()
+    test_silent_omni_is_fine_when_no_audio_wanted()
     print("ok")

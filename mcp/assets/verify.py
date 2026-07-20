@@ -7,6 +7,15 @@ with accent. Both were only found by measuring - do this every generation.
 import json, re, subprocess, sys
 
 
+def has_video(path):
+    """A decodable video stream - guards against truncated/empty output."""
+    probe = subprocess.run(
+        ["ffprobe", "-v", "error", "-select_streams", "v", "-show_entries",
+         "stream=codec_name", "-of", "json", path],
+        capture_output=True, text=True)
+    return bool(json.loads(probe.stdout or "{}").get("streams"))
+
+
 def audio(path):
     """(has_stream, mean_dB). Real audio ~ -30..-10 dB; silence reads -91/-inf."""
     probe = subprocess.run(
