@@ -42,6 +42,20 @@ python <plugin>/mcp/assets/video.py "a slow orbit around a matte black cube"
 # or: from video import generate; rung, detail = generate(subject, out="hero.mp4")
 ```
 
+### Verify every generation — measure, don't eyeball
+
+```
+python <plugin>/mcp/assets/verify.py hero.mp4 "#10B981" --audio
+```
+
+Prints accent coverage % and mean audio dB, exits nonzero on failure. Run it on
+every generated video before showing the user. Two real defects shipped because
+nobody measured: a file with a valid AAC stream that was **silent** (mean −91 dB
+— "has audio" is not "is audible"), and a Veo clip whose prompt demanded one
+accent while the frame read **90% emerald** against the ≤10% budget. Rewriting
+the colour rule three ways brought it to 1.8%, then 0.7% — but only measuring
+proved it. Report the number, never an adjective.
+
 ### Audio — silence is a choice, not a default to inherit
 
 Veo 3+ generates **synced audio natively** (its headline feature over Veo 2).
@@ -67,7 +81,7 @@ falls through to the next rung instead of raising.
 | Rung | Needs | Model |
 |------|-------|-------|
 | 1. Public Gemini API | `GOOGLE_API_KEY` | `gemini-omni-flash-preview` (live since 2026-06-30); Veo 3.1 fallback |
-| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | Veo 3.1 → 3.0. **Omni Flash 404s on Vertex as of 2026-07** (confirmed) — it is Gemini-API-only until rollout completes, so rung 2 means Veo, not Omni. Report which model actually served. |
+| 2. Vertex AI | `GOOGLE_APPLICATION_CREDENTIALS` (service-account JSON path) + `GOOGLE_CLOUD_PROJECT` + `GOOGLE_CLOUD_LOCATION` | **Veo 3.0 is what actually serves** (3.1 preview 404s on many projects). Omni is tried first only when `audio=False` — it is silent-only and speaks the `v1beta1 interactions` API, not `predictLongRunning`; probing it the Veo way 404s and misreads as "model missing". Always report which model served. |
 | 3. **No credentials** | nothing | Emit the paste-prompt below for the user's Gemini app (Omni Flash powers it for subscribers). NOT an error — say "no token, continuing" and proceed. |
 | 4. Nothing works | — | Ask the user to drop any mp4 into `workspace/references/video/`. |
 
