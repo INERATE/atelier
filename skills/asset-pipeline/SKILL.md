@@ -34,6 +34,19 @@ credentials. Photos / complex subjects: `pip install rembg`, then
 
 ## AI video generation — the ladder (never exit on missing credentials)
 
+**Omni** = `gemini-omni-flash-preview`, Google's text→video model (Veo 3.1 is the
+fallback family). Don't hand-roll the REST calls — the ladder is implemented:
+
+```
+python <plugin>/mcp/assets/video.py "a slow orbit around a matte black cube"
+# or: from video import generate; rung, detail = generate(subject, out="hero.mp4")
+```
+
+`generate()` returns `(rung, detail)`. Rungs 1–2 wrote the mp4 and `detail` is the
+model that served it. **Rung 3 means `detail` IS the paste-prompt** — that is a
+success path, not a failure: show it to the user and keep working. An expired key
+falls through to the next rung instead of raising.
+
 | Rung | Needs | Model |
 |------|-------|-------|
 | 1. Public Gemini API | `GOOGLE_API_KEY` | `gemini-omni-flash-preview` (live since 2026-06-30); Veo 3.1 fallback |
