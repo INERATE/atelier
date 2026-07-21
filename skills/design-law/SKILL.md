@@ -35,8 +35,10 @@ skill — overlays in `design_guide_versions` may extend this law.
   restraint everywhere else.
 - **Linear / Vercel / Stripe** — hairlines, tabular numerals, serif-italic
   editorial accents, monochrome discipline.
-- **GC Design Language** (GrowthCharters) — the parent of this law; emerald
-  accent variant proving the system is brand-parameterizable.
+- **GC Design Language** (GrowthCharters) — the parent of this law; its emerald
+  is ONE brand instance proving the system is brand-parameterizable. The accent
+  is a **parameter, not a default** — Cloudflare's is orange, Linear's is
+  near-white, GC's is emerald. Never inherit green as the house color.
 - **Layers (getlayers.ai)** — "AI builds generic. We make it cinematic." Their
   library proves premium pages are assembled from a **cinematic layer stack**,
   not improvised per page: a named background layer (their catalog: 53
@@ -51,7 +53,9 @@ skill — overlays in `design_guide_versions` may extend this law.
 --bg:        #0A0A0B dark / #FAFAF8 light      --bg-raised: #141518 / #FFFFFF
 --ink:       #F5F5F3 / #1A1A18                 --ink-2: #9B9B98   --ink-3: #5C5C5A
 --hairline:  rgba(255,255,255,.08) / rgba(0,0,0,.08)
---accent:    THE user's ONE brand color (project intake) — budget ≤10% of any viewport
+--accent:    THE user's ONE brand color — from intake/logo/brand; if unknown, ASK once
+             or derive from domain (fintech=blue, health=teal, luxury=gold, dev-tool=violet/orange).
+             NEVER default to green/emerald. Budget ≤10% of any viewport.
 Radius: 8 inputs / 12 cards / 16 modals / full pills.  Spacing: 4-scale, ≥96px between landing sections.
 Depth: layering + inset top-light `0 1px 0 rgba(255,255,255,.04)`; drop shadows ONLY on floating layers.
 ```
@@ -101,9 +105,10 @@ secondary ghost hairline; ONE primary per view. Inputs: sunken + accent hairline
 focus glow. Tables: hairline separators, 11px uppercase heads.
 
 **Never hallucinate components.** Query the registries first — shadcn/ui (MCP),
-Aceternity (MCP), ReactBits (MCP), Motion.dev, MagicUI, Radix — then adapt to
-these tokens. `python <plugin>/db/store.py registry component` lists what's
-available.
+Aceternity (MCP), ReactBits (MCP), MagicUI, Motion.dev, Kokonut UI (`@kokonutui`)
+and Bklit charts (`@bklit`) via the shadcn MCP, Radix — then adapt to these
+tokens. For JS animation timelines/SVG morph/draggable see the [[anime-js]]
+skill. `python <plugin>/db/store.py registry component` lists what's available.
 
 ## 7. Landing-page anatomy (the Cloudflare-grade default)
 
