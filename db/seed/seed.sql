@@ -74,12 +74,13 @@ INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
 
 DELETE FROM framework_map;
 INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
- ('skills/principal-mind/SKILL.md','skill','the thinking protocol: decisive answers, root-cause debugging, security reflexes, outcome-first reporting','FIRST, on every prompt — step 0 before all other skills; any bug/debug/security/decision task','loop-engine'),
+ ('skills/principal-mind/SKILL.md','skill','the thinking protocol: decisive answers, root-cause debugging, security reflexes run alongside ponytail on every response, outcome-first reporting','FIRST, on every prompt — step 0 before all other skills; any bug/debug/security/decision task','loop-engine,security-law'),
  ('skills/loop-engine/SKILL.md','skill','the operating loop, model routing table, clarification protocol, termination rule','any nontrivial task; deciding which model tier; when to stop or ask','architect,builder,summarizer,principal-mind'),
- ('skills/design-law/SKILL.md','skill','premium UI law: vocabulary, tokens, motion, icons, component canon, anti-slop, checklist','any UI/design/landing/component/animation work','gateway,asset-pipeline,registry'),
+ ('skills/design-law/SKILL.md','skill','premium UI law: vocabulary + UI-movements glossary (skeuomorphism/neumorphism/glassmorphism/claymorphism/minimalism/maximalism/brutalism/liquid-glass/spatial-UI), tokens, motion, icons, component canon, anti-slop, checklist','any UI/design/landing/component/animation work; recognizing/scoping a named style request','gateway,asset-pipeline,registry'),
  ('skills/clean-code-law/SKILL.md','skill','250-word file budget, DRY via graph, comment policy, split strategies','writing or refactoring any source code','file_size_gate'),
  ('skills/structure-law/SKILL.md','skill','canonical file trees per stack + intake questions','scaffolding, moving files, new projects','nextjs,fastapi'),
- ('skills/auth-law/SKILL.md','skill','token rotation/families/grace, silent refresh, anti-patterns, shipping checklist','ANY authentication/session work','deploy-advisor'),
+ ('skills/auth-law/SKILL.md','skill','token rotation/families/grace, silent refresh, anti-patterns, shipping checklist','ANY authentication/session work','deploy-advisor,security-law'),
+ ('skills/security-law/SKILL.md','skill','OWASP-grade request-path law: injection, XSS, CSRF, transport/replay, tenant isolation, rate limiting, validation at trust boundaries, shipping checklist','ANY endpoint, form, or data-processing code — not only auth screens','auth-law,principal-mind'),
  ('skills/deploy-advisor/SKILL.md','skill','hosting matrix with real costs; decision rules','choosing hosting, estimating costs, CI/CD setup',''),
  ('skills/gateway/SKILL.md','skill','resolves authoritative design files (core + overlays)','START of any UI task, before design-law','design-law,learner'),
  ('skills/asset-pipeline/SKILL.md','skill','webp/frames tools, scrollytelling recipe, video/logo generation credential ladder + universal prompts','images, video, logo/brand-mark generation, media, storytelling sections','assets.py,ScrollScrub,design-law'),
@@ -90,6 +91,7 @@ INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
  ('skills/stack-guides/fastapi.md','skill','FastAPI decision rules + 5 agent mistakes','Python backend/AI service work','structure-law'),
  ('skills/stack-guides/comms.md','skill','REST vs GraphQL vs gRPC vs SSE/WS vs TOON decision table','choosing protocols, streaming, real-time, API design','fastapi,redis-celery'),
  ('skills/stack-guides/redis-celery.md','skill','cache-aside + invalidation-on-write, idempotent background jobs, SSE progress','caching, background jobs, queues, stale-data bugs','comms'),
+ ('skills/stack-guides/scale-patterns.md','skill','per-container skeletons, pagination-vs-infinite-scroll toggle, type-ahead search (debounce+indexed column+viewer-relevance ranking), DataLoader batching for N+1','large lists/tables/consoles, search bars, feed vs table UIs, GraphQL nested resolvers','redis-celery,comms'),
  ('skills/stack-guides/rag.md','skill','RAG ladder: context-first, hybrid+rerank pipeline, PageIndex trees, ADK rule','retrieval, embeddings, document QA, agent frameworks','fastapi'),
  ('skills/mcp-maker/SKILL.md','skill','ladder for integrating any site/library: registry row -> skill -> MCP server','adding a new component site, library, or API to Atelier','registry'),
  ('skills/anime-js/SKILL.md','skill','Anime.js v4 API: animate/createTimeline/stagger, SVG morph+draw, draggable, onScroll, splitText, springs, React scope','JS animation not covered by Framer Motion: timelines, SVG morph/draw, draggable, motion paths, text splitting','design-law,living-graphics,registry'),

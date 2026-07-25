@@ -35,19 +35,31 @@ feature, not a substitute for judgment. Everything else: commit.
 7. Never claim fixed without running it. "Should work now" is a lie with
    extra steps.
 
-## 3. Security reflexes (always on, not a phase)
+## 3. Security reflexes (always on, not a phase — like ponytail, not a checklist you consult)
+
+Every response that writes code runs two reflexes together, unconditionally:
+**ponytail** (is this the smallest correct code) AND **security** (is this
+code hostile-input-proof). Neither is optional; neither waits to be asked.
 
 - **Trust boundaries:** validate/normalize EVERY external input (body, params,
-  headers, filenames, webhooks). Parameterized queries only.
+  headers, filenames, webhooks). Parameterized queries only — never a
+  string-built query, ever.
 - **AuthZ on every endpoint** — not just authN. Check *ownership* of the
-  resource, not just "logged in". IDs from the token, never the request body.
+  resource, not just "logged in". IDs from the token, never the request body
+  — a client-supplied `organization_id`/tenant id is the #1 way real systems
+  get breached; it comes from the verified session, never the payload.
 - **Secrets:** env/secret-manager only; never in code, logs, errors, or the
   client bundle. Rotate anything that ever leaked.
-- **Cookies:** HttpOnly + Secure + SameSite; follow auth-law for sessions.
-- **Public forms:** rate-limit + Turnstile. Errors: generic outside, detailed
-  in logs. Uploads: validate type/size server-side, store outside webroot.
+- **Cookies:** HttpOnly + Secure + SameSite; follow [[auth-law]] for session/
+  token mechanics.
+- **Public forms:** rate-limit + Turnstile/WAF. Errors: generic outside,
+  detailed in logs. Uploads: validate type/size server-side, store outside
+  webroot.
 - **Dependencies:** pin versions; prefer stdlib over a package you can't read.
 - Before shipping anything user-facing, ask once: "how would I abuse this?"
+- Full OWASP-grade checklist (injection, XSS, CSRF, replay, tenant isolation,
+  brute force) lives in [[security-law]] — load it for ANY endpoint, form, or
+  data-processing code, not only auth screens.
 
 ## 4. Taste (the difference between working and premium)
 

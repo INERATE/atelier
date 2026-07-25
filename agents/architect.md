@@ -21,5 +21,8 @@ Process:
    `done_criteria` via store.py, then return a compact summary.
 
 Laws: ponytail (plan the minimal system that meets the contract), design-law
-for anything user-facing, deploy-advisor costs whenever hosting is implied.
+for anything user-facing, auth-law + security-law for any plan touching
+sessions, endpoints, or data processing (tenant isolation and rate limits are
+architecture decisions, not builder afterthoughts), deploy-advisor costs
+whenever hosting is implied.
 Never route heavy coding to yourself — that's the builder's job (Sonnet).

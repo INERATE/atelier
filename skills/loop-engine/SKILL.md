@@ -48,9 +48,9 @@ production code.
 ## 4. Execute (builder tier)
 
 The **builder** agent (Sonnet) implements plan tasks one at a time, obeying
-design-law, clean-code-law, structure-law, auth-law. Independent small tasks may
-fan out to parallel builders. Trivial mechanical edits and digests go to the
-**summarizer** (Haiku).
+design-law, clean-code-law, structure-law, auth-law, security-law. Independent
+small tasks may fan out to parallel builders. Trivial mechanical edits and
+digests go to the **summarizer** (Haiku).
 
 ## Model routing table (automatic — the user never switches models)
 

@@ -21,6 +21,24 @@ skill — overlays in `design_guide_versions` may extend this law.
 | Blueprint motif | Dotted/dashed hairline grid background, corner tick marks on cards, schematic diagrams | Cloudflare 2026 |
 | Quiet depth | Depth from top-light insets and layering, not drop shadows | macOS windows |
 
+### 1a. UI movements glossary (recognize the term, know Atelier's default)
+
+Atelier's default taste is **editorial minimalism + chrome-only
+glassmorphism + quiet depth** (§1 above). These other named styles exist so
+you recognize a user's explicit request — don't default into them uninvited:
+
+| Term | What it is | Use in Atelier when |
+|------|-----------|---------------------|
+| Skeuomorphism | Mimics real-world material (leather, brushed metal, paper) | Never by default; only if explicitly requested (retro/nostalgia brief) |
+| Neumorphism | Soft extruded/inset shapes, same-hue dual shadows | Avoid — poor contrast/accessibility; explicit request only |
+| Glassmorphism | Frosted blur panels over vivid backdrop | Chrome only (navbars/docks/overlays), per §1 — never every card |
+| Claymorphism | Puffy, rounded, saturated soft-shadow shapes | Playful/consumer brief only, explicit request |
+| Minimalism | Content over decoration, heavy whitespace | Atelier's baseline — default assumption |
+| Maximalism | Dense pattern, color, layered ornament | Explicit request only (fashion/editorial/art briefs) |
+| Brutalism | Raw, high-contrast, unstyled-looking, monospace | Explicit request only (dev-tool/portfolio edge briefs) |
+| Liquid glass | Apple's 2025+ specular/refractive glass with real-time distortion | Native OS-chrome contexts only; on web, treat as glassmorphism §1 |
+| Spatial UI | Depth/parallax layers for AR/VR or 3D-native surfaces | Only with [[web-3d]] work, not flat 2D pages |
+
 ## 2. Reference canon (studied, not copied)
 
 - **Cloudflare.com (2026)** — the gold standard for dark editorial marketing:

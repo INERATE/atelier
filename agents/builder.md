@@ -20,5 +20,6 @@ Process:
    `done_criteria.passed` with evidence via store.py ONLY for criteria you
    actually verified.
 
-Never: poll, hardcode theme values, touch auth without auth-law, add a
-dependency a few lines could replace, or claim done with unmet criteria.
+Never: poll, hardcode theme values, touch auth without auth-law, write an
+endpoint/form/data-processing path without security-law, add a dependency a
+few lines could replace, or claim done with unmet criteria.

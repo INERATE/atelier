@@ -10,6 +10,10 @@ Distilled from a production system that was broken repeatedly by well-meaning
 improvement is probably in the anti-pattern list. A genuinely logged-in user
 must NEVER be bounced to login by normal use.
 
+This law covers session/token architecture only. Injection, XSS, CSRF,
+tenant isolation, rate limiting, and everything else a request path needs is
+[[security-law]] — load both for any auth-adjacent endpoint.
+
 ## The six guarantees
 
 1. No unexpected bounce to login — ever, on any click or cross-app navigation.
