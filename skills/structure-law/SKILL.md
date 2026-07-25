@@ -87,8 +87,13 @@ docker-compose.yml   .env.example   README.md
 
 ## Rules
 
-- URL pattern for APIs: `/api/v1/{feature}/{action}`; keep endpoints thin,
-  logic in services.
+- URL pattern for APIs: `/api/v1/{feature}/{action}` (path versioning — the
+  default, what Stripe/GitHub/most SaaS expose publicly). Bump to `/v2` only
+  on a breaking change; additive fields never bump. Alternative seen at scale
+  (Stripe internally): a date-based version header instead of a path segment
+  — only reach for it if you truly need per-customer version pinning; path
+  versioning is simpler and is the default. Keep endpoints thin, logic in
+  services.
 - `public/` mirrors industry conventions; docs live in `docs/`, never scattered.
 - Shared code goes to `packages/`/`lib/` on second use — DRY is structural.
 - Env: every var documented in `.env.example`; secrets never committed.

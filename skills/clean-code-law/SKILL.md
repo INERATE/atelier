@@ -40,6 +40,20 @@ Does it need to exist? → reuse in-repo → stdlib → native platform → inst
 dep → one line → only then minimal new code. No interfaces with one
 implementation, no config for constants, no scaffolding "for later".
 
+## Classes & modules (one job each)
+
+- **Single responsibility**: a class/service does one thing — a `UserService`
+  fetches/mutates users, it doesn't also send emails or format API responses.
+  If a class needs "and" to describe it, split it.
+- **Dependency injection over globals**: pass a db session/client into a
+  constructor or function param — never import a singleton connection deep in
+  business logic. Makes testing and swapping impls trivial.
+- **No god objects**: a class that grows a new method for every feature is a
+  design smell — extract collaborators instead of adding methods.
+- Prefer plain functions over a class with one method; reach for a class only
+  when you need to hold state across calls (a service with a shared client,
+  a stateful parser) — ponytail applies to OOP too.
+
 ## Comments
 
 Premium and sparse: only constraints the code cannot show (invariants, gotchas,
