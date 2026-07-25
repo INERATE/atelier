@@ -85,6 +85,24 @@ packages/   docs/   infra/{docker, cloudflared}   scripts/   .github/workflows/
 docker-compose.yml   .env.example   README.md
 ```
 
+## Naming conventions
+
+| What | Convention | Example |
+|---|---|---|
+| Folders (frontend + backend) | kebab-case | `user-profile/`, `order-history/` |
+| React component files | PascalCase.tsx, filename = export | `UserCard.tsx` |
+| Hooks | camelCase, `use` prefix | `useAuthSession.ts` |
+| Non-component TS/JS files | camelCase | `formatCurrency.ts` |
+| Python files/functions/vars | snake_case | `user_service.py`, `get_user_by_id()` |
+| Python classes | PascalCase | `class UserService:` |
+| DB tables/columns | snake_case, tables plural | `users`, `order_items`, `created_at` |
+| API route segments | kebab-case, plural nouns | `/api/v1/user-profiles/{id}` |
+| Env vars | SCREAMING_SNAKE_CASE | `DATABASE_URL` |
+| Constants | SCREAMING_SNAKE_CASE | `MAX_RETRIES` |
+
+One convention per language, applied everywhere — a mixed-case codebase is a
+review failure, not a style choice.
+
 ## Rules
 
 - URL pattern for APIs: `/api/v1/{feature}/{action}` (path versioning — the
