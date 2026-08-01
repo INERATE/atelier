@@ -122,6 +122,54 @@ storytelling, offer the user the Lite option explicitly: a 20–30 frame
 storyboard costs ~$1 and lands in under a minute, then regenerate only the
 keeper frames on the default model.
 
+## Cloudflare Workers AI — sibling image route (verified, not a replacement)
+
+Third image-gen option alongside the Gemini ladder above, when the project has
+Cloudflare credentials (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID` — same
+rule as Gemini: project `.env`, gitignored, never in the SQLite store or a
+commit). Two distinct routes live under the SAME endpoint family — verify
+which one before promising "free":
+
+1. **Native Workers AI models (`@cf/...`) — free, runs on Cloudflare's own
+   compute.** `POST /client/v4/accounts/{account}/ai/run/{model}` — these
+   models take **`multipart/form-data`, even for a text-only prompt** (a JSON
+   body 400s with a generic `AiError: Invalid input`, no matter how correct
+   the JSON looks — this is the one gotcha that burns an agent's first two
+   attempts). Verified working: `@cf/black-forest-labs/flux-2-klein-9b`
+   returns a base64 JPEG synchronously, no billing required.
+   ```bash
+   curl --request POST \
+     --url "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/ai/run/@cf/black-forest-labs/flux-2-klein-9b" \
+     --header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+     --form "prompt=<subject>" --form "width=1024" --form "height=1024"
+   # response: {"result":{"image":"<base64 JPEG>"}}
+   ```
+   No native alpha/transparency on this route — pipe the decoded output
+   through the same `assets.py cut` step as Gemini output.
+2. **BYOK-proxied models (`openai/gpt-image-2`, etc.) — billed, NOT free.**
+   `POST /client/v4/accounts/{account}/ai/run` (model in the JSON body, not
+   the URL) with `{"model":"openai/gpt-image-2","input":{...}}`. This one DOES
+   support `background:"transparent"` + `output_format:"webp"` natively (skips
+   the cut step entirely) — but it 402s with `"Insufficient balance; add money
+   to your gateway or use BYOK"` (code 2021) on an unfunded account. Only use
+   it once the user confirms the AI Gateway has credit or an OpenAI key is
+   linked — never assume it's free because it lives under `/ai/run` next to
+   the native models. Full `input` params: `prompt` (required), `size`
+   (`1024x1024`/`1024x1536`/`1536x1024`/`auto`), `quality`
+   (`low`/`medium`/`high`/`auto`), `background`
+   (`transparent`/`opaque`/`auto`), `output_format` (`png`/`webp`/`jpeg`),
+   `images` (array of base64/data-URI inputs, 1-16, for edits/composites).
+3. **No Cloudflare credentials, or user prefers the ChatGPT UI directly** —
+   same underlying model as route 2, so the same params apply as plain
+   English in the prompt: state the size, "transparent background", and
+   "export as PNG" explicitly; ChatGPT's UI has no size/quality controls, the
+   model reads them from prose.
+
+Route 1 is the default recommendation (free, no gate) for icon/tile-scale
+batches; keep Gemini as the default for finals needing 4K or heavy text
+rendering, since Cloudflare's native catalog doesn't match `gemini-3.1-flash-image`'s
+resolution ceiling.
+
 ## Logo & brand-mark generation (same ladder, image models)
 
 When a project needs a logo/mark: rung 1–2 call the Gemini image models
