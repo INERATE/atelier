@@ -75,7 +75,7 @@ INSERT OR REPLACE INTO registry (kind,name,source,install,usage,meta) VALUES
 
 DELETE FROM framework_map;
 INSERT INTO framework_map (path,kind,purpose,load_when,links) VALUES
- ('skills/principal-mind/SKILL.md','skill','the thinking protocol: decisive answers, root-cause debugging, security reflexes run alongside ponytail on every response, outcome-first reporting','FIRST, on every prompt — step 0 before all other skills; any bug/debug/security/decision task','loop-engine,security-law'),
+ ('skills/principal-mind/SKILL.md','skill','the thinking protocol: decisive answers, root-cause debugging, security reflexes run alongside ponytail on every response, epistemic calibration (evidence vs guesswork, stale/conflicting facts flagged not asserted), outcome-first reporting','FIRST, on every prompt — step 0 before all other skills; any bug/debug/security/decision task','loop-engine,security-law'),
  ('skills/loop-engine/SKILL.md','skill','the operating loop, model routing table, clarification protocol, termination rule','any nontrivial task; deciding which model tier; when to stop or ask','architect,builder,summarizer,principal-mind'),
  ('skills/design-law/SKILL.md','skill','premium UI law: vocabulary + UI-movements glossary (skeuomorphism/neumorphism/glassmorphism/claymorphism/minimalism/maximalism/brutalism/liquid-glass/spatial-UI), tokens, motion, icons, component canon, anti-slop, checklist','any UI/design/landing/component/animation work; recognizing/scoping a named style request','gateway,asset-pipeline,registry'),
  ('skills/clean-code-law/SKILL.md','skill','250-word file budget, DRY via graph, comment policy, split strategies, class/module design (SRP, DI, no god objects)','writing or refactoring any source code','file_size_gate'),
