@@ -5,7 +5,7 @@ INSERT INTO rules (domain,key,value,source) VALUES
  ('code','dry','check graph/repo first; import, never rewrite; fix bugs in the shared function','core'),
  ('code','comments','sparse, intent-only; no narration; ponytail: notes for deliberate ceilings','core'),
  ('design','accent_budget','ONE brand accent, <=10% of any viewport','core'),
- ('design','accent_select','choose one accent through skills/design-law/references/palette.md: explicit brand, assets/tokens, product context, then category prior. Record the evidence and light/dark values. Green/emerald requires direct brand or subject evidence; status green and old Atelier examples are never palette evidence','core'),
+ ('design','accent_select','choose one coherent scheme through skills/design-law/references/palette.md: explicit brand, assets/tokens, product context, then a named recipe from palette-catalog.md. Record the evidence and light/dark values. Green/emerald requires direct brand or subject evidence; status colors and old Atelier examples are never palette evidence','core'),
  ('design','theming','all colors as CSS variables in globals.css; semantic tokens in components; NEVER hardcode hex or per-page dark: overrides','core'),
  ('design','icons','Lucide 1.5px monochrome currentColor only; accent only on state','core'),
  ('design','motion','ease-out-expo entrances; springs 260/32/.9; stagger 60-80ms; reduced-motion fallback; transform/opacity only','core'),

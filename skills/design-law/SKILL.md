@@ -75,6 +75,7 @@ you recognize a user's explicit request — don't default into them uninvited:
 --hairline:  rgba(255,255,255,.08) / rgba(0,0,0,.08)
 --accent:    ONE evidence-backed brand color selected by references/palette.md.
              NEVER default to green/emerald. Budget ≤10% of any viewport.
+--on-accent: contrast-safe text/icon color for filled accent surfaces.
 Radius: 8 inputs / 12 cards / 16 modals / full pills.  Spacing: 4-scale, ≥96px between landing sections.
 Depth: layering + inset top-light `0 1px 0 rgba(255,255,255,.04)`; drop shadows ONLY on floating layers.
 ```
@@ -162,7 +163,7 @@ one visual thesis, one typographic voice, and details specific to its subject.
 ## 9. Review checklist (UI may not ship failing any)
 
 - [ ] One accent, ≤10% viewport; near-monochrome otherwise
-- [ ] Palette direction cites its evidence; green appears only when justified
+- [ ] Palette direction cites its evidence or a named catalog recipe; green appears only when justified
 - [ ] Hairlines not shadows; top-light insets; correct radii
 - [ ] Type scale + serif-italic accent used once per headline; tabular numerals
 - [ ] Motion: springs/expo, staggered, reduced-motion fallback, no layout thrash

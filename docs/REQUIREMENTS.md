@@ -164,7 +164,9 @@ every user gets premium, industrial-grade UI, not template output:
   emoji icons, 8-hue icon backgrounds, bounce-in animations, centered feature-grid
   walls. **Never.**
 - **Tokens, not vibes:** color/radius/spacing/easing/duration all named values;
-  accent budget ≤10% of viewport; hairline borders; 4-based spacing scale.
+  12 coherent light/dark palette recipes prevent unrelated products from sharing
+  one visual identity; accent budget ≤10% of viewport; hairline borders;
+  4-based spacing scale.
 - **Motion system:** ease-out-expo entrances, springs for interaction, 60–80ms
   staggers, scrub narrative (GSAP ScrollTrigger + Lenis) / trigger UI (Framer
   Motion), one hero moment per page, `prefers-reduced-motion` fallbacks,
